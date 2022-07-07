@@ -1,6 +1,6 @@
 # Auto delete tagged resources in Azure using Azure DevOps pipeline
 
-Prerequisites:
+### Prerequisites:
 
 - A docker image with the needed tools. https://github.com/savaklin/pipeline_docker_image/blob/main/Dockerfile
 - A service connection with owner or contributor over your devtest management group
