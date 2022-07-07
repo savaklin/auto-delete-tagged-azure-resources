@@ -1,0 +1,26 @@
+name: $(Rev:rr)
+
+schedules:
+- cron: '0 20 * * *'
+  always: true
+  branches:
+    include:
+    - master
+
+jobs:
+  - job: job
+    pool: <YOUR-AGENT-POOL-NAME>
+    container:
+      image: <YOUR-ACR-NAME>.azurecr.io/<YOUR-PIPELINE-IMAGE-NAME>
+      endpoint: <YOUR-ACR-SERVICE-CONNECTION-NAME>
+
+    steps:
+   
+      - task: AzureCLI@2
+        displayName: "clean up resources"
+        inputs:
+          azureSubscription: <YOUR-SERVICE-CONNECITON-NAME> # Needs to be a service principal with owner/contributor over your devtest managment group
+          scriptType: pscore
+          scriptLocation: inlineScript
+          inlineScript: |
+            python3 $(Build.SourcesDirectory)/resource_cleanup/cleanup.py
