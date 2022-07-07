@@ -20,7 +20,7 @@ jobs:
         displayName: "clean up resources"
         inputs:
           azureSubscription: <YOUR-SERVICE-CONNECITON-NAME> # Needs to be a service principal with owner/contributor over your devtest managment group
-          scriptType: pscore
+          scriptType: bash
           scriptLocation: inlineScript
           inlineScript: |
             python3 $(Build.SourcesDirectory)/resource_cleanup/cleanup.py
